@@ -1,0 +1,8 @@
+# Compiled binary
+student_record
+*.o
+*.out
+*.exe
+
+# macOS
+.DS_Store
