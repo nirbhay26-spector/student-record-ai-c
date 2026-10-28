@@ -40,6 +40,10 @@ int isValidEmail(const char *e);
 int findStudent(long sapId);
 void loadSampleData(void);
 void printStudent(const struct Student *s);
+void addStudent(void);
+void displayAll(void);
+void searchStudent(void);
+void deleteStudent(void);
 
 /* ---------- Input helper functions ---------- */
 
@@ -166,6 +170,128 @@ void printStudent(const struct Student *s) {
     printf("\n");
 }
 
+/* Function 1: add a new student */
+void addStudent(void) {
+    struct Student s;
+    char prompt[40];
+    int i, ok;
+
+    if (count >= MAX_STUDENTS) {
+        printf("Record list is full. Cannot add more students.\n");
+        return;
+    }
+
+    printf("\n--- Add New Student ---\n");
+    s.sapId = readLong("SAP ID (9 digits): ", 100000000L, 999999999L);
+    if (findStudent(s.sapId) != -1) {
+        printf("A student with this SAP ID already exists. Not added.\n");
+        return;
+    }
+
+    s.rollNo = readInt("Roll No.: ", 1, 99999);
+
+    do {
+        printf("Name: ");
+        readLine(s.name, sizeof(s.name));
+    } while (strlen(s.name) == 0);
+
+    do {
+        printf("Phone No. (10 digits): ");
+        readLine(s.phone, sizeof(s.phone));
+        ok = isValidPhone(s.phone);
+        if (!ok) {
+            printf("  Invalid phone number.\n");
+        }
+    } while (!ok);
+
+    do {
+        printf("Email ID: ");
+        readLine(s.email, sizeof(s.email));
+        ok = isValidEmail(s.email);
+        if (!ok) {
+            printf("  Invalid email ID.\n");
+        }
+    } while (!ok);
+
+    s.year = readInt("Year (1-4): ", 1, 4);
+    do {
+        s.semester = readInt("Semester (1-8): ", 1, 8);
+        ok = ((s.semester + 1) / 2 == s.year);
+        if (!ok) {
+            printf("  Semester %d does not belong to year %d. Try again.\n",
+                   s.semester, s.year);
+        }
+    } while (!ok);
+
+    printf("Enter SGPA of each semester (enter 0 if not available yet):\n");
+    for (i = 0; i < NUM_SEM; i++) {
+        sprintf(prompt, "  Semester %d SGPA: ", i + 1);
+        s.sgpa[i] = readFloat(prompt, 0, 10);
+    }
+
+    students[count] = s;
+    count++;
+    printf("Student added successfully.\n");
+}
+
+/* Function: display the records of all students */
+void displayAll(void) {
+    int i;
+    if (count == 0) {
+        printf("No records to display.\n");
+        return;
+    }
+    printf("\n=== All Student Records (%d) ===\n", count);
+    for (i = 0; i < count; i++) {
+        printStudent(&students[i]);
+    }
+    printf("--------------------------------------------------\n");
+}
+
+/* Function 2: search a student by SAP ID and display the record */
+void searchStudent(void) {
+    long sap;
+    int pos;
+    printf("\n--- Search Student ---\n");
+    sap = readLong("Enter SAP ID to search: ", 100000000L, 999999999L);
+    pos = findStudent(sap);
+    if (pos == -1) {
+        printf("No student found with SAP ID %ld.\n", sap);
+    } else {
+        printStudent(&students[pos]);
+        printf("--------------------------------------------------\n");
+    }
+}
+
+/* Function: delete one student record using SAP ID */
+void deleteStudent(void) {
+    long sap;
+    int pos, i;
+    char answer[10];
+
+    printf("\n--- Delete Student ---\n");
+    sap = readLong("Enter SAP ID to delete: ", 100000000L, 999999999L);
+    pos = findStudent(sap);
+    if (pos == -1) {
+        printf("No student found with SAP ID %ld.\n", sap);
+        return;
+    }
+
+    printf("Are you sure you want to delete %s? (y/n): ", students[pos].name);
+    readLine(answer, sizeof(answer));
+    if (answer[0] != 'y' && answer[0] != 'Y') {
+        printf("Deletion cancelled.\n");
+        return;
+    }
+
+    /* shift all records after pos one place to the left */
+    for (i = pos; i < count - 1; i++) {
+        students[i] = students[i + 1];
+    }
+    count--;
+    printf("Record deleted successfully.\n");
+}
+
 /* ---------- Main program ---------- */
 int main(void) {
     int choice;
@@ -190,10 +316,10 @@ int main(void) {
         choice = readInt("Enter your choice: ", 0, 9);
 
         switch (choice) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
+            case 1: addStudent(); break;
+            case 2: displayAll(); break;
+            case 3: searchStudent(); break;
+            case 4: deleteStudent(); break;
             case 5:
             case 6:
             case 7:
@@ -201,11 +327,8 @@ int main(void) {
             case 9:
                 printf("Feature under development.\n");
                 break;
-            case 0:
-                printf("Thank you. Goodbye!\n");
-                break;
-            default:
-                printf("Option not available yet.\n");
+            case 0: printf("Thank you. Goodbye!\n"); break;
+            default: printf("Option not available yet.\n");
         }
     } while (choice != 0);
 
