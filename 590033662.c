@@ -44,6 +44,12 @@ void addStudent(void);
 void displayAll(void);
 void searchStudent(void);
 void deleteStudent(void);
+float calcCGPA(const struct Student *s);
+void displayAllCGPA(void);
+void yearWiseAverage(void);
+int compareNames(const char *a, const char *b);
+void displaySortedBySap(void);
+void displaySortedByName(void);
 
 /* ---------- Input helper functions ---------- */
 
@@ -292,6 +298,145 @@ void deleteStudent(void) {
     printf("Record deleted successfully.\n");
 }
 
+/* Function 3: CGPA = average of the SGPA values that are available (> 0) */
+float calcCGPA(const struct Student *s) {
+    float sum = 0;
+    int n = 0, i;
+    for (i = 0; i < NUM_SEM; i++) {
+        if (s->sgpa[i] > 0) {
+            sum = sum + s->sgpa[i];
+            n++;
+        }
+    }
+    if (n == 0) {
+        return 0;
+    }
+    return sum / n;
+}
+
+/* Shows the CGPA of every student */
+void displayAllCGPA(void) {
+    int i;
+    if (count == 0) {
+        printf("No records available.\n");
+        return;
+    }
+    printf("\n=== CGPA of Each Student ===\n");
+    printf("%-12s %-20s %s\n", "SAP ID", "Name", "CGPA");
+    printf("--------------------------------------------\n");
+    for (i = 0; i < count; i++) {
+        printf("%-12ld %-20s %.2f\n", students[i].sapId, students[i].name,
+               calcCGPA(&students[i]));
+    }
+}
+
+/* Function 4: average CGPA of the students of each year */
+void yearWiseAverage(void) {
+    int y, i, n;
+    float sum;
+    printf("\n=== Average CGPA Year-wise ===\n");
+    for (y = 1; y <= 4; y++) {
+        sum = 0;
+        n = 0;
+        for (i = 0; i < count; i++) {
+            if (students[i].year == y && calcCGPA(&students[i]) > 0) {
+                sum = sum + calcCGPA(&students[i]);
+                n++;
+            }
+        }
+        if (n == 0) {
+            printf("Year %d : no students with CGPA available\n", y);
+        } else {
+            printf("Year %d : %.2f  (%d student(s))\n", y, sum / n, n);
+        }
+    }
+}
+
+/* Compares two names ignoring upper/lower case. Works like strcmp. */
+int compareNames(const char *a, const char *b) {
+    int i = 0;
+    while (a[i] != '\0' && b[i] != '\0') {
+        char x = tolower((unsigned char)a[i]);
+        char y = tolower((unsigned char)b[i]);
+        if (x != y) {
+            return x - y;
+        }
+        i++;
+    }
+    return (unsigned char)a[i] - (unsigned char)b[i];
+}
+
+/* Function 5: display records in increasing order of SAP ID (bubble sort) */
+void displaySortedBySap(void) {
+    struct Student temp[MAX_STUDENTS];
+    struct Student swap;
+    int i, j;
+
+    if (count == 0) {
+        printf("No records to display.\n");
+        return;
+    }
+    for (i = 0; i < count; i++) {   /* sort a copy, keep the original order */
+        temp[i] = students[i];
+    }
+    for (i = 0; i < count - 1; i++) {
+        for (j = 0; j < count - 1 - i; j++) {
+            if (temp[j].sapId > temp[j + 1].sapId) {
+                swap = temp[j];
+                temp[j] = temp[j + 1];
+                temp[j + 1] = swap;
+            }
+        }
+    }
+    printf("\n=== Records sorted by SAP ID (increasing) ===\n");
+    for (i = 0; i < count; i++) {
+        printStudent(&temp[i]);
+    }
+    printf("--------------------------------------------------\n");
+}
+
+/* Function 6: display records in increasing (A to Z) order of Name */
+void displaySortedByName(void) {
+    struct Student temp[MAX_STUDENTS];
+    struct Student swap;
+    int i, j;
+
+    if (count == 0) {
+        printf("No records to display.\n");
+        return;
+    }
+    for (i = 0; i < count; i++) {
+        temp[i] = students[i];
+    }
+    for (i = 0; i < count - 1; i++) {
+        for (j = 0; j < count - 1 - i; j++) {
+            if (compareNames(temp[j].name, temp[j + 1].name) > 0) {
+                swap = temp[j];
+                temp[j] = temp[j + 1];
+                temp[j + 1] = swap;
+            }
+        }
+    }
+    printf("\n=== Records sorted by Name (A to Z) ===\n");
+    for (i = 0; i < count; i++) {
+        printStudent(&temp[i]);
+    }
+    printf("--------------------------------------------------\n");
+}
+
+/* Returns the semester number (1-8) that has the lowest SGPA, 0 if none */
+int weakestSemester(const struct Student *s) {
+    int i, weakest = 0;
+    float lowest = 11;
+    for (i = 0; i < NUM_SEM; i++) {
+        if (s->sgpa[i] > 0 && s->sgpa[i] < lowest) {
+            lowest = s->sgpa[i];
+            weakest = i + 1;
+        }
+    }
+    return weakest;
+}
+
 /* ---------- Main program ---------- */
 int main(void) {
     int choice;
@@ -320,13 +465,11 @@ int main(void) {
             case 2: displayAll(); break;
             case 3: searchStudent(); break;
             case 4: deleteStudent(); break;
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-                printf("Feature under development.\n");
-                break;
+            case 5: displayAllCGPA(); break;
+            case 6: yearWiseAverage(); break;
+            case 7: displaySortedBySap(); break;
+            case 8: displaySortedByName(); break;
+            case 9: printf("Feature under development.\n"); break;
             case 0: printf("Thank you. Goodbye!\n"); break;
             default: printf("Option not available yet.\n");
         }
