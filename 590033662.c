@@ -50,6 +50,9 @@ void yearWiseAverage(void);
 int compareNames(const char *a, const char *b);
 void displaySortedBySap(void);
 void displaySortedByName(void);
+int weakestSemester(const struct Student *s);
+void giveAdvice(const struct Student *s);
+void academicAdvisor(void);
 
 /* ---------- Input helper functions ---------- */
 
@@ -437,6 +440,56 @@ int weakestSemester(const struct Student *s) {
     return weakest;
 }
 
+/* Part B: AI-assisted academic advisor.
+ * The four categories were designed with help from an AI tool (see
+ * AI_USAGE_LOG.md) and then checked and adjusted by me.
+ * The advice itself is decided here in C using if-else. */
+void giveAdvice(const struct Student *s) {
+    float cgpa = calcCGPA(s);
+    int weak = weakestSemester(s);
+
+    printf("%s (SAP %ld) | CGPA = %.2f\n", s->name, s->sapId, cgpa);
+
+    if (cgpa == 0) {
+        printf("  No SGPA available yet - advice cannot be given.\n");
+    } else if (cgpa >= 8.5) {
+        printf("  Category : Excellent Performance\n");
+        printf("  Advice   : Excellent performance - maintain your current study pattern.\n");
+    } else if (cgpa >= 7.0) {
+        printf("  Category : Good Performance\n");
+        printf("  Advice   : Good performance - keep revising regularly and aim for 8.5+.\n");
+    } else if (cgpa >= 5.0) {
+        printf("  Category : Needs Improvement\n");
+        printf("  Advice   : Needs improvement - focus more on subjects with lower SGPA");
+        printf(" (weakest: semester %d).\n", weak);
+    } else {
+        printf("  Category : Requires Immediate Attention\n");
+        printf("  Advice   : Requires immediate attention - meet your faculty mentor and");
+        printf(" make a study plan (weakest: semester %d).\n", weak);
+    }
+}
+
+/* Menu option: advice for one student or for all students */
+void academicAdvisor(void) {
+    long sap;
+    int pos, i;
+
+    printf("\n--- AI-Assisted Academic Advisor ---\n");
+    sap = readLong("Enter SAP ID (0 for all students): ", 0, 999999999L);
+    if (sap == 0) {
+        for (i = 0; i < count; i++) {
+            giveAdvice(&students[i]);
+        }
+    } else {
+        pos = findStudent(sap);
+        if (pos == -1) {
+            printf("No student found with SAP ID %ld.\n", sap);
+        } else {
+            giveAdvice(&students[pos]);
+        }
+    }
+}
+
 /* ---------- Main program ---------- */
 int main(void) {
     int choice;
@@ -469,7 +522,7 @@ int main(void) {
             case 6: yearWiseAverage(); break;
             case 7: displaySortedBySap(); break;
             case 8: displaySortedByName(); break;
-            case 9: printf("Feature under development.\n"); break;
+            case 9: academicAdvisor(); break;
             case 0: printf("Thank you. Goodbye!\n"); break;
             default: printf("Option not available yet.\n");
         }

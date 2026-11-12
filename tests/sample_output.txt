@@ -1,0 +1,272 @@
+=====================================================
+  Student Record and Result Management System
+=====================================================
+
+------------------- MENU -------------------
+ 1. Add a student
+ 2. Display all students
+ 3. Search a student by SAP ID
+ 4. Delete a student
+ 5. CGPA of each student
+ 6. Average CGPA of each year
+ 7. Display students sorted by SAP ID
+ 8. Display students sorted by Name
+ 9. Academic advisor (advice from CGPA)
+ 0. Exit
+Enter your choice: 
+=== All Student Records (5) ===
+--------------------------------------------------
+SAP ID   : 590010001
+Roll No. : 101
+Name     : Aarav Sharma
+Phone    : 9876543210
+Email    : aarav.sharma@stu.upes.ac.in
+Year     : 1    Semester: 2
+SGPA     : S1=9.10 S2=8.90 S3=-- S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010002
+Roll No. : 102
+Name     : Diya Verma
+Phone    : 9812345678
+Email    : diya.verma@stu.upes.ac.in
+Year     : 1    Semester: 2
+SGPA     : S1=7.20 S2=7.60 S3=-- S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010003
+Roll No. : 103
+Name     : Kabir Singh
+Phone    : 9898989898
+Email    : kabir.singh@stu.upes.ac.in
+Year     : 2    Semester: 3
+SGPA     : S1=6.00 S2=5.50 S3=5.80 S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010004
+Roll No. : 104
+Name     : Meera Nair
+Phone    : 9123456780
+Email    : meera.nair@stu.upes.ac.in
+Year     : 3    Semester: 5
+SGPA     : S1=4.50 S2=4.20 S3=4.80 S4=4.00 S5=4.60 S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010005
+Roll No. : 105
+Name     : Rohan Gupta
+Phone    : 9765432108
+Email    : rohan.gupta@stu.upes.ac.in
+Year     : 4    Semester: 7
+SGPA     : S1=8.20 S2=8.50 S3=8.00 S4=8.80 S5=8.60 S6=8.40 S7=8.70 S8=-- 
+--------------------------------------------------
+
+------------------- MENU -------------------
+ 1. Add a student
+ 2. Display all students
+ 3. Search a student by SAP ID
+ 4. Delete a student
+ 5. CGPA of each student
+ 6. Average CGPA of each year
+ 7. Display students sorted by SAP ID
+ 8. Display students sorted by Name
+ 9. Academic advisor (advice from CGPA)
+ 0. Exit
+Enter your choice: 
+--- Search Student ---
+Enter SAP ID to search: --------------------------------------------------
+SAP ID   : 590010001
+Roll No. : 101
+Name     : Aarav Sharma
+Phone    : 9876543210
+Email    : aarav.sharma@stu.upes.ac.in
+Year     : 1    Semester: 2
+SGPA     : S1=9.10 S2=8.90 S3=-- S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+
+------------------- MENU -------------------
+ 1. Add a student
+ 2. Display all students
+ 3. Search a student by SAP ID
+ 4. Delete a student
+ 5. CGPA of each student
+ 6. Average CGPA of each year
+ 7. Display students sorted by SAP ID
+ 8. Display students sorted by Name
+ 9. Academic advisor (advice from CGPA)
+ 0. Exit
+Enter your choice: 
+=== CGPA of Each Student ===
+SAP ID       Name                 CGPA
+--------------------------------------------
+590010001    Aarav Sharma         9.00
+590010002    Diya Verma           7.40
+590010003    Kabir Singh          5.77
+590010004    Meera Nair           4.42
+590010005    Rohan Gupta          8.46
+
+------------------- MENU -------------------
+ 1. Add a student
+ 2. Display all students
+ 3. Search a student by SAP ID
+ 4. Delete a student
+ 5. CGPA of each student
+ 6. Average CGPA of each year
+ 7. Display students sorted by SAP ID
+ 8. Display students sorted by Name
+ 9. Academic advisor (advice from CGPA)
+ 0. Exit
+Enter your choice: 
+=== Average CGPA Year-wise ===
+Year 1 : 8.20  (2 student(s))
+Year 2 : 5.77  (1 student(s))
+Year 3 : 4.42  (1 student(s))
+Year 4 : 8.46  (1 student(s))
+
+------------------- MENU -------------------
+ 1. Add a student
+ 2. Display all students
+ 3. Search a student by SAP ID
+ 4. Delete a student
+ 5. CGPA of each student
+ 6. Average CGPA of each year
+ 7. Display students sorted by SAP ID
+ 8. Display students sorted by Name
+ 9. Academic advisor (advice from CGPA)
+ 0. Exit
+Enter your choice: 
+=== Records sorted by SAP ID (increasing) ===
+--------------------------------------------------
+SAP ID   : 590010001
+Roll No. : 101
+Name     : Aarav Sharma
+Phone    : 9876543210
+Email    : aarav.sharma@stu.upes.ac.in
+Year     : 1    Semester: 2
+SGPA     : S1=9.10 S2=8.90 S3=-- S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010002
+Roll No. : 102
+Name     : Diya Verma
+Phone    : 9812345678
+Email    : diya.verma@stu.upes.ac.in
+Year     : 1    Semester: 2
+SGPA     : S1=7.20 S2=7.60 S3=-- S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010003
+Roll No. : 103
+Name     : Kabir Singh
+Phone    : 9898989898
+Email    : kabir.singh@stu.upes.ac.in
+Year     : 2    Semester: 3
+SGPA     : S1=6.00 S2=5.50 S3=5.80 S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010004
+Roll No. : 104
+Name     : Meera Nair
+Phone    : 9123456780
+Email    : meera.nair@stu.upes.ac.in
+Year     : 3    Semester: 5
+SGPA     : S1=4.50 S2=4.20 S3=4.80 S4=4.00 S5=4.60 S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010005
+Roll No. : 105
+Name     : Rohan Gupta
+Phone    : 9765432108
+Email    : rohan.gupta@stu.upes.ac.in
+Year     : 4    Semester: 7
+SGPA     : S1=8.20 S2=8.50 S3=8.00 S4=8.80 S5=8.60 S6=8.40 S7=8.70 S8=-- 
+--------------------------------------------------
+
+------------------- MENU -------------------
+ 1. Add a student
+ 2. Display all students
+ 3. Search a student by SAP ID
+ 4. Delete a student
+ 5. CGPA of each student
+ 6. Average CGPA of each year
+ 7. Display students sorted by SAP ID
+ 8. Display students sorted by Name
+ 9. Academic advisor (advice from CGPA)
+ 0. Exit
+Enter your choice: 
+=== Records sorted by Name (A to Z) ===
+--------------------------------------------------
+SAP ID   : 590010001
+Roll No. : 101
+Name     : Aarav Sharma
+Phone    : 9876543210
+Email    : aarav.sharma@stu.upes.ac.in
+Year     : 1    Semester: 2
+SGPA     : S1=9.10 S2=8.90 S3=-- S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010002
+Roll No. : 102
+Name     : Diya Verma
+Phone    : 9812345678
+Email    : diya.verma@stu.upes.ac.in
+Year     : 1    Semester: 2
+SGPA     : S1=7.20 S2=7.60 S3=-- S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010003
+Roll No. : 103
+Name     : Kabir Singh
+Phone    : 9898989898
+Email    : kabir.singh@stu.upes.ac.in
+Year     : 2    Semester: 3
+SGPA     : S1=6.00 S2=5.50 S3=5.80 S4=-- S5=-- S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010004
+Roll No. : 104
+Name     : Meera Nair
+Phone    : 9123456780
+Email    : meera.nair@stu.upes.ac.in
+Year     : 3    Semester: 5
+SGPA     : S1=4.50 S2=4.20 S3=4.80 S4=4.00 S5=4.60 S6=-- S7=-- S8=-- 
+--------------------------------------------------
+SAP ID   : 590010005
+Roll No. : 105
+Name     : Rohan Gupta
+Phone    : 9765432108
+Email    : rohan.gupta@stu.upes.ac.in
+Year     : 4    Semester: 7
+SGPA     : S1=8.20 S2=8.50 S3=8.00 S4=8.80 S5=8.60 S6=8.40 S7=8.70 S8=-- 
+--------------------------------------------------
+
+------------------- MENU -------------------
+ 1. Add a student
+ 2. Display all students
+ 3. Search a student by SAP ID
+ 4. Delete a student
+ 5. CGPA of each student
+ 6. Average CGPA of each year
+ 7. Display students sorted by SAP ID
+ 8. Display students sorted by Name
+ 9. Academic advisor (advice from CGPA)
+ 0. Exit
+Enter your choice: 
+--- AI-Assisted Academic Advisor ---
+Enter SAP ID (0 for all students): Aarav Sharma (SAP 590010001) | CGPA = 9.00
+  Category : Excellent Performance
+  Advice   : Excellent performance - maintain your current study pattern.
+Diya Verma (SAP 590010002) | CGPA = 7.40
+  Category : Good Performance
+  Advice   : Good performance - keep revising regularly and aim for 8.5+.
+Kabir Singh (SAP 590010003) | CGPA = 5.77
+  Category : Needs Improvement
+  Advice   : Needs improvement - focus more on subjects with lower SGPA (weakest: semester 2).
+Meera Nair (SAP 590010004) | CGPA = 4.42
+  Category : Requires Immediate Attention
+  Advice   : Requires immediate attention - meet your faculty mentor and make a study plan (weakest: semester 4).
+Rohan Gupta (SAP 590010005) | CGPA = 8.46
+  Category : Good Performance
+  Advice   : Good performance - keep revising regularly and aim for 8.5+.
+
+------------------- MENU -------------------
+ 1. Add a student
+ 2. Display all students
+ 3. Search a student by SAP ID
+ 4. Delete a student
+ 5. CGPA of each student
+ 6. Average CGPA of each year
+ 7. Display students sorted by SAP ID
+ 8. Display students sorted by Name
+ 9. Academic advisor (advice from CGPA)
+ 0. Exit
+Enter your choice: Thank you. Goodbye!
